@@ -3,7 +3,7 @@
 <!---
 Lenguaje: Bash
 -->     
-![Logo](images/animacion.gif)
+![Logo](images/animation.gif)
 
 
 ## What is SQL Boolean Blind Injection and How Does It Work? 
