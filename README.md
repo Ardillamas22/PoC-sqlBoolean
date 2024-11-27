@@ -53,7 +53,11 @@ Throughout this process, the script continuously checks whether the value retrie
 
 This workflow allows the attacker to progressively obtain the entire database structure, including table and column names. What makes this approach particularly effective is the ability to bypass common input sanitizations, as the character values are represented in **decimal**. This makes it harder to detect and mitigate the injection, even on systems with basic security measures.
 
-It is important to note that although in this proof of concept only the names of tables and columns were extracted, the same principle can be applied to extract the entire database, including the data stored in each column, which could result in a full database dump.
+It is important to note that although in this proof of concept only the names of tables and columns were extracted, the same principle can be applied to extract the entire database, including the data stored in each column, which could result in a full database dump. For example, using a query like the following:
+
+```sql
+SELECT ASCII(SUBSTRING(user, 1, 1)) FROM users LIMIT 1 = 97
+```
 
 This method is highly scalable, meaning it can be applied to databases of any size, as long as the database schema is compatible with queries to the **`information_schema`** table, which is standard in MySQL systems.
 
